@@ -1,0 +1,66 @@
+repos:
+  - name: OpenvCloud Core
+    source:
+       branch: staging
+    target:
+       branch: master
+    url: https://github.com/0-complexity/openvcloud
+  - name: OpenvCloud Frontend
+    source:
+       branch: staging
+    target:
+       branch: master
+    url: https://github.com/0-complexity/g8vdc
+  - name: OpenvCloud AYS
+    source:
+       branch: staging
+    target:
+       branch: master
+    url: https://github.com/0-complexity/openvcloud_ays
+    ays: true
+  - name: OpenvCloud Selfhealing
+    source:
+       branch: staging
+    target:
+       branch: master
+    url: https://github.com/0-complexity/selfhealing
+  
+  - name: JumpScale Core
+    source:
+       branch: staging
+    target:
+       branch: master
+    url: https://github.com/jumpscale7/jumpscale_core7
+  - name: JumpScale Portal
+    source:
+       branch: staging
+    target:
+       branch: master
+    url: https://github.com/jumpscale7/jumpscale_portal
+  - name: JumpScale AYS
+    source:
+       branch: staging
+    target:
+       branch: master
+    ays: true
+    url: https://github.com/jumpscale7/ays_jumpscale7
+
+images:
+  openvcloud/cb_master: lastest
+  openvcloud/portal7: latest
+  openvcloud/grafana-init: latest
+  openvcloud/syncthing_sidecar: latest
+  openvcloud/pxeboot: latest
+  openvcloud/pxeboot-init: latest
+  openvcloud/nginx-init: latest
+  openvcloud/pxeboot-httpd: latest
+  openvcloud/0-access: OVC-2.3.0
+  openvcloud/js9: latest
+  openvcloud/management: latest
+  grafana/grafana: 5.0.0
+  nginx: 1.13
+  mongo: 3.7.2
+  cvallance/mongo-k8s-sidecar: lastest
+  influxdb: 1.4
+  syncthing/syncthing: lastest
+  redis: 3.2
