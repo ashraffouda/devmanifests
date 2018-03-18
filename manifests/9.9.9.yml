@@ -5,6 +5,12 @@ repos:
     target:
        branch: master
     url: https://github.com/0-complexity/openvcloud
+  - name: OpenvCloud Installer
+    source:
+       branch: master
+    target:
+       tag: v2.3.0
+    url: https://github.com/0-complexity/openvcloud_installer
   - name: OpenvCloud Frontend
     source:
        branch: staging
