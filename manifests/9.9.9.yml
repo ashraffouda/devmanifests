@@ -9,7 +9,7 @@ repos:
     source:
        branch: master
     target:
-       branch: development
+       branch: master
     url: https://github.com/0-complexity/openvcloud_installer
   - name: OpenvCloud Frontend
     source:
