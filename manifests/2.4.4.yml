@@ -67,6 +67,7 @@ images:
   openvcloud/pxeboot-httpd: 2.4.0
   openvcloud/0-access: OVC-2.4.4
   openvcloud/js9: 2.4.0
+  openvcloud/js9inst: 2.4.4
   openvcloud/management: 2.4.4
   openvcloud/nginx: 2.4.4
   grafana/grafana: 5.0.0
