@@ -16,7 +16,7 @@ repos:
        branch: master
     target:
        tag: v2.4.4
-    url: https://github.com/0-complexity/g8vdc.git
+    url: https://github.com/0-complexity/g8vdc
   - name: OpenvCloud AYS
     source:
        branch: master
