@@ -7,7 +7,7 @@ repos:
     url: https://github.com/0-complexity/openvcloud
   - name: OpenvCloud Installer
     source:
-       branch: development
+       branch: master
     target:
        tag: v2.4.4
     url: https://github.com/0-complexity/openvcloud_installer
