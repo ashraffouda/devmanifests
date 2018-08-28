@@ -60,9 +60,9 @@ images:
   openvcloud/pxeboot-init: latest
   openvcloud/nginx-init: latest
   openvcloud/pxeboot-httpd: latest
-  openvcloud/0-access: OVC-2.3.0
-  openvcloud/js9: latest
+  openvcloud/0-access: latest
   openvcloud/management: latest
+  openvcloud/ninstaller: latest
   grafana/grafana: 5.0.0
   nginx: 1.13
   mongo: 3.7.2
