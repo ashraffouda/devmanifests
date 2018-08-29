@@ -63,7 +63,7 @@ images:
   openvcloud/syncthing_sidecar: latest
   openvcloud/pxeboot: latest
   openvcloud/pxeboot-init: latest
-  openvcloud/pxeboot-base: latest
+  openvcloud/pxeboot-base: 2.4.0
   openvcloud/pxeboot-httpd: latest
   openvcloud/nginx-init: latest
   openvcloud/0-access: latest
