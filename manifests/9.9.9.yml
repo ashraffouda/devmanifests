@@ -36,6 +36,12 @@ repos:
     target:
        branch: master
     url: https://github.com/0-complexity/selfhealing
+  - name: OpenvCloud noVNC
+    source:
+       branch: staging
+    target:
+       branch: 0.5.1
+    url: https://github.com/0-complexity/noVNC
   - name: JumpScale Core
     source:
        branch: staging
