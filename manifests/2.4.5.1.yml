@@ -1,0 +1,79 @@
+repos:
+  - name: OpenvCloud Core
+    source:
+       branch: 2.4.5.1
+    target:
+       tag: v2.4.5.1
+    url: https://github.com/0-complexity/openvcloud
+  - name: OpenvCloud Installer
+    source:
+       branch: master
+    target:
+       tag: v2.4.5
+    url: https://github.com/0-complexity/openvcloud_installer
+  - name: OpenvCloud Frontend
+    source:
+       branch: master
+    target:
+       tag: v2.4.5
+    url: https://github.com/0-complexity/g8vdc
+  - name: OpenvCloud 0-Access
+    source:
+       branch: master
+    target:
+       tag: v2.4.5
+    url: https://github.com/0-complexity/0-access
+  - name: OpenvCloud AYS
+    source:
+       branch: master
+    target:
+       tag: v2.4.5
+    url: https://github.com/0-complexity/openvcloud_ays
+    ays: true
+  - name: OpenvCloud Selfhealing
+    source:
+       branch: master
+    target:
+       tag: v2.4.5
+    url: https://github.com/0-complexity/selfhealing
+  - name: JumpScale Core
+    source:
+       branch: master
+    target:
+       tag: v7.4.5
+    url: https://github.com/jumpscale7/jumpscale_core7
+  - name: JumpScale Portal
+    source:
+       branch: 7.4.5.1
+    target:
+       tag: v7.4.5.1
+    url: https://github.com/jumpscale7/jumpscale_portal
+  - name: JumpScale AYS
+    source:
+       branch: master
+    target:
+       tag: v7.4.5
+    ays: true
+    url: https://github.com/jumpscale7/ays_jumpscale7
+
+images:
+  openvcloud/cb_master: 2.4.5.1
+  openvcloud/js7: 2.4.5.1
+  openvcloud/grafana-init: 2.4.5
+  openvcloud/syncthing_sidecar: 2.4.5
+  openvcloud/pxeboot: 2.4.0
+  openvcloud/pxeboot-init: 2.4.0
+  openvcloud/pxeboot-base: 2.4.0
+  openvcloud/pxeboot-httpd: 2.4.0
+  openvcloud/nginx-init: 2.4.5
+  openvcloud/0-access: 2.4.5
+  openvcloud/management: 2.4.5
+  openvcloud/nginx: 2.4.5
+  openvcloud/ninstaller: 2.4.5
+  grafana/grafana: 5.0.0
+  mongo: 3.7.2
+  cvallance/mongo-k8s-sidecar: latest
+  influxdb: 1.4
+  syncthing/syncthing: latest
+  redis: 3.2
+
