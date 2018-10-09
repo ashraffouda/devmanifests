@@ -23,12 +23,6 @@ repos:
     target:
        branch: master
     url: https://github.com/0-complexity/0-access
-  - name: OpenvCloud AYS
-    source:
-       branch: staging
-    target:
-       branch: master
-    url: https://github.com/0-complexity/openvcloud_ays
   - name: OpenvCloud Selfhealing
     source:
        branch: staging
@@ -53,12 +47,6 @@ repos:
     target:
        branch: master
     url: https://github.com/jumpscale7/jumpscale_portal
-  - name: JumpScale AYS
-    source:
-       branch: staging
-    target:
-       branch: master
-    url: https://github.com/jumpscale7/ays_jumpscale7
   - name: Python Binaries
     source:
        branch: staging
