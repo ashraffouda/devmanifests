@@ -29,7 +29,6 @@ repos:
     target:
        branch: master
     url: https://github.com/0-complexity/openvcloud_ays
-    ays: true
   - name: OpenvCloud Selfhealing
     source:
        branch: staging
@@ -59,8 +58,31 @@ repos:
        branch: staging
     target:
        branch: master
-    ays: true
     url: https://github.com/jumpscale7/ays_jumpscale7
+  - name: Python Binaries
+    source:
+       branch: staging
+    target:
+       branch: master
+    url: https://git.gig.tech/openvcloud/binary/python
+  - name: OpenvStorage Branding
+    source:
+       branch: staging
+    target:
+       branch: master
+    url: https://git.gig.tech/openvcloud/binary/openvstorage_branding
+  - name: RouterOS Binary
+    source:
+       branch: staging
+    target:
+       branch: master
+    url: git@git.gig.tech:openvcloud/binary/routeros
+  - name: Redis Binary
+    source:
+       branch: staging
+    target:
+       branch: master
+    url: https://git.gig.tech/openvcloud/binary/redis
 
 images:
   openvcloud/cb_master: latest
