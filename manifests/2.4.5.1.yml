@@ -38,15 +38,15 @@ repos:
     url: https://github.com/0-complexity/selfhealing
   - name: JumpScale Core
     source:
-       branch: master
-    target:
-       tag: v7.4.5
-    url: https://github.com/jumpscale7/jumpscale_core7
-  - name: JumpScale Portal
-    source:
        branch: 7.4.5.1
     target:
        tag: v7.4.5.1
+    url: https://github.com/jumpscale7/jumpscale_core7
+  - name: JumpScale Portal
+    source:
+       branch: master
+    target:
+       tag: v7.4.5
     url: https://github.com/jumpscale7/jumpscale_portal
   - name: JumpScale AYS
     source:
