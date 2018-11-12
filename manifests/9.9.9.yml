@@ -7,9 +7,9 @@ repos:
     url: git@git.gig.tech:openvcloud/openvcloud
   - name: OpenvCloud Installer
     source:
-       branch: installer-nodes
-    target:
        branch: master
+    target:
+       branch: installer-nodes
     url: git@git.gig.tech:openvcloud/openvcloud_installer
   - name: OpenvCloud Frontend
     source:
