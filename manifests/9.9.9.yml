@@ -4,91 +4,169 @@ repos:
        branch: staging
     target:
        branch: master
-    url: https://github.com/0-complexity/openvcloud
+    url: git@git.gig.tech:openvcloud/openvcloud
   - name: OpenvCloud Installer
     source:
-       branch: master
+       branch: installer-nodes
     target:
        branch: master
-    url: https://github.com/0-complexity/openvcloud_installer
+    url: git@git.gig.tech:openvcloud/openvcloud_installer
   - name: OpenvCloud Frontend
     source:
        branch: staging
     target:
        branch: master
-    url: https://github.com/0-complexity/g8vdc
+    url: git@git.gig.tech:openvcloud/g8vdc
   - name: OpenvCloud 0-Access
     source:
        branch: master
     target:
        branch: master
-    url: https://github.com/0-complexity/0-access
-  - name: OpenvCloud Selfhealing
-    source:
-       branch: staging
-    target:
-       branch: master
-    url: https://github.com/0-complexity/selfhealing
+    url: git@git.gig.tech:openvcloud/0-access
   - name: OpenvCloud noVNC
     source:
        branch: staging
     target:
        branch: 0.5.1
-    url: https://github.com/0-complexity/noVNC
+    url: git@git.gig.tech:openvcloud/noVNC
   - name: JumpScale Core
     source:
        branch: staging
     target:
        branch: master
-    url: https://github.com/jumpscale7/jumpscale_core7
+    url: git@git.gig.tech:openvcloud/jumpscale/jumpscale_core7
   - name: JumpScale Portal
     source:
        branch: staging
     target:
        branch: master
-    url: https://github.com/jumpscale7/jumpscale_portal
+    url: git@git.gig.tech:openvcloud/jumpscale/jumpscale_portal
   - name: Python Binaries
     source:
        branch: staging
     target:
        branch: master
-    url: https://git.gig.tech/openvcloud/binary/python
+    url: git@git.gig.tech:openvcloud/binary/python
   - name: OpenvStorage Branding
     source:
        branch: staging
     target:
        branch: master
-    url: https://git.gig.tech/openvcloud/binary/openvstorage_branding
+    url: git@git.gig.tech:openvcloud/binary/openvstorage_branding
   - name: RouterOS Binary
     source:
        branch: staging
     target:
        branch: master
     url: git@git.gig.tech:openvcloud/binary/routeros
-  - name: Redis Binary
-    source:
-       branch: staging
-    target:
-       branch: master
-    url: https://git.gig.tech/openvcloud/binary/redis
 
 images:
   openvcloud/cb_master: latest
+  openvcloud/vgw: latest
+  openvcloud/importexport: latest
   openvcloud/base: latest
-  openvcloud/js7: latest
   openvcloud/grafana-init: latest
   openvcloud/syncthing_sidecar: latest
   openvcloud/pxeboot: latest
   openvcloud/pxeboot-init: latest
   openvcloud/pxeboot-base: 2.4.0
   openvcloud/pxeboot-httpd: latest
+  openvcloud/nginx: latest
   openvcloud/nginx-init: latest
   openvcloud/0-access: latest
   openvcloud/management: latest
   openvcloud/ninstaller: latest
+  openvcloud/apt: latest
   grafana/grafana: 5.0.0
   mongo: 3.7.2
   cvallance/mongo-k8s-sidecar: latest
   influxdb: 1.4
   syncthing/syncthing: latest
   redis: 3.2
+
+upgrade:
+  apiVersion: batch/v1
+  kind: Job
+  metadata:
+    name: upgradejob
+  spec:
+    template:
+      metadata:
+        labels:
+          app: upgrader
+      spec:
+        restartPolicy: Never
+        initContainers:
+        - name: nginx-init
+          command: [jspython]
+          args: ['configure-nginx.py', '--upgrade']
+          image: openvcloud/nginx-init
+          workingDir: /var/run/scripts/nginx
+          volumeMounts:
+          - name: nginx-config
+            mountPath:  /opt/cfg/nginx/sites-enabled
+          - name:  system-config
+            mountPath:  /opt/cfg/system/system-config.yaml
+            subPath: system-config.yaml
+          - name: update-files
+            mountPath:  /opt/cfg/upgrade
+          - name: update-log
+            mountPath: /opt/logs
+        containers:
+        - name: upgrader-container
+          image: openvcloud/management
+          volumeMounts:
+          - name: ssh-dir
+            mountPath: /root/.ssh
+          - name: update-log
+            mountPath: /opt/logs
+          - name:  system-config
+            mountPath:  /opt/cfg/system/system-config.yaml
+            subPath: system-config.yaml
+          - name: kube-client
+            mountPath: /usr/local/bin/kubectl
+            subPath: kubectl
+          command: [bash]
+          args: [update_env]
+          workingDir: /opt/code/git.gig.tech:openvcloud/openvcloud_installer/scripts/install/
+        - name: server-container
+          image: openvcloud/nginx
+          ports:
+          - containerPort: 80
+          volumeMounts:
+          - name: update-files
+            mountPath: /opt/cfg/upgrade
+          - name: update-log
+            mountPath: /opt/logs
+          - name: nginx-config
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
+          - name: certs
+            mountPath: /opt/cfg/nginx/ssl/
+            readOnly: true
+        volumes:
+        - name: ssh-dir
+          hostPath:
+            path: /var/ovc/.ssh
+            type: Directory
+        - name: update-log
+          hostPath:
+            path: /var/ovc/updatelogs
+            type: Directory
+        - name: update-files
+          emptyDir: {}
+        - name: system-config
+          configMap:
+            name: system-config
+        - name: nginx-config
+          emptyDir: {}
+        - name: certs
+          hostPath:
+            path: /var/ovc/ssl/
+            type: Directory
+        - name: kube-client
+          hostPath:
+            path: /usr/local/bin
+            type: Directory
+  
+  
